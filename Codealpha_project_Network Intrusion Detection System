@@ -1,0 +1,9 @@
+sudo nano /etc/snort/rules/custom.rules
+alert icmp any any -> any any (msg:"ICMP Packet Detected"; sid:1000001; rev:1;)
+sudo nano /etc/snort/snort.conf
+# include $RULE_PATH/local.rules
+include $RULE_PATH/custom.rules#!/bin/bash
+sudo snort -A console -q -c /etc/snort/snort.conf -i eth0
+
+chmod +x run_snort.sh
+./run_snort.sh
